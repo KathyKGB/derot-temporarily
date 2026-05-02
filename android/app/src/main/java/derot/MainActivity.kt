@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.rork.freshguard.ui.navigation.AppNavigation
-import com.rork.freshguard.ui.theme.AppTheme
+import com.freise.ui.navigation.AppNavigation
+import com.freise.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
