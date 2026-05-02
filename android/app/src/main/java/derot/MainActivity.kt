@@ -1,4 +1,4 @@
-package com.rork.freshguard
+package com.freise
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
