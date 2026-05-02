@@ -1,4 +1,4 @@
-package com.freise.ui.theme
+package java.freise.ui
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
