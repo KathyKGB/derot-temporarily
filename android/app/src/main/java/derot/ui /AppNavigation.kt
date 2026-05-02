@@ -1,10 +1,10 @@
-package com.rork.freshguard.ui.navigation
+package com.freise.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.rork.freshguard.ui.screens.HomeScreen
+import com.freise.ui.screens.HomeScreen
 
 @Composable
 fun AppNavigation() {
