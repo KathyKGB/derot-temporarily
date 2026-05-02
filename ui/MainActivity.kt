@@ -1,0 +1,20 @@
+package com.rork.freshguard
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import com.rork.freshguard.ui.navigation.AppNavigation
+import com.rork.freshguard.ui.theme.AppTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            AppTheme {
+                AppNavigation()
+            }
+        }
+    }
+}
