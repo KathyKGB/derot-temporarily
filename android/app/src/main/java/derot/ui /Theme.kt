@@ -1,11 +1,11 @@
-package com.rork.freshguard.ui.theme
+package com.freise.ui.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-private val FreshGuardScheme = darkColorScheme(
+private val FreiseScheme = darkColorScheme(
     primary = Color(0xFFB8FFD8),
     onPrimary = Color(0xFF071611),
     secondary = Color(0xFF9DFF63),
@@ -21,7 +21,7 @@ private val FreshGuardScheme = darkColorScheme(
 @Composable
 fun AppTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = FreshGuardScheme,
+        colorScheme = FreiseScheme,
         content = content
     )
 }
