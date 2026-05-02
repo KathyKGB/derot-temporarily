@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
+// colours used
 private val Ink = Color(0xFF071611)
 private val Moss = Color(0xFF12392D)
 private val Mint = Color(0xFFB8FFD8)
@@ -65,6 +66,7 @@ private val Amber = Color(0xFFFFC46B)
 private val Coral = Color(0xFFFF7058)
 private val Cream = Color(0xFFFFF7E8)
 
+// variables used
 private data class FoodItem(
     val emoji: String,
     val name: String,
@@ -77,9 +79,10 @@ private data class FoodItem(
 
 private data class ActionCard(val title: String, val subtitle: String, val icon: ImageVector, val color: Color)
 
+// user interface
 @Composable
 fun HomeScreen(navController: NavController) {
-    val food = remember {
+    val food = remember { //keeps data when UI is changed
         mutableStateListOf(
             FoodItem("🍓", "Strawberries", "Top fridge drawer", "Use tonight", "8h", Coral, "Moisture spike detected"),
             FoodItem("🥬", "Spinach", "Crisper", "Soon", "1d", Amber, "Great for a quick pesto"),
@@ -94,12 +97,13 @@ fun HomeScreen(navController: NavController) {
         ActionCard("Diet check", "Scan labels & risks", Icons.Default.Restaurant, Color(0xFFFFA8CF))
     )
     var dialog by remember { mutableStateOf<String?>(null) }
-    var selectedFood by remember { mutableStateOf<FoodItem?>(null) }
-    var itemName by remember { mutableStateOf("") }
+    var selectedFood by remember { mutableStateOf<FoodItem?>(null) } //tracks which food item is clicked
+    var itemName by remember { mutableStateOf("") } //tracks user input for adding food
     var itemLocation by remember { mutableStateOf("Fridge shelf") }
 
+    //formatting
     Surface(color = Ink, modifier = Modifier.fillMaxSize()) {
-        LazyColumn(
+        LazyColumn( //vertical scroll
             modifier = Modifier
                 .fillMaxSize()
                 .background(Brush.verticalGradient(listOf(Color(0xFF03110D), Color(0xFF0E2B22), Color(0xFF071611))))
@@ -107,31 +111,31 @@ fun HomeScreen(navController: NavController) {
             verticalArrangement = Arrangement.spacedBy(18.dp)
         ) {
             item { Spacer(Modifier.height(28.dp)) }
-            item { Header(urgentCount = food.count { it.color == Coral || it.color == Amber }) }
-            item { FreshnessHero(onScan = { dialog = "scan" }) }
+            item { Header(urgentCount = food.count { it.color == Coral || it.color == Amber }) } //filters items that are urgent
+            item { FreshnessHero(onScan = { dialog = "scan" }) } 
             item {
                 Text("Quick capture", color = Cream, fontWeight = FontWeight.Bold, fontSize = 20.sp)
                 Spacer(Modifier.height(10.dp))
-                LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    items(actions) { action -> ActionTile(action, onClick = { dialog = action.title }) }
+                LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) { //horizontal scroll
+                    items(actions) { action -> ActionTile(action, onClick = { dialog = action.title }) } //loops through action list, click opens pop up
                 }
             }
             item { SectionTitle("Eat next", "Tap an item to mark eaten or see tips") }
             items(food) { item -> FoodRow(item, onClick = { selectedFood = item }) }
-            item { PreservationCoach(onClick = { dialog = "tips" }) }
+            item { PreservationCoach(onClick = { dialog = "tips" }) } //clickable titles
             item { FriendAccountability(onClick = { dialog = "friends" }) }
             item { Spacer(Modifier.height(24.dp)) }
         }
     }
 
-    if (dialog != null) {
+    if (dialog != null) { //only shows dialog when something is selected
         val mode = dialog.orEmpty()
         AlertDialog(
             onDismissRequest = { dialog = null },
             confirmButton = {
                 Button(onClick = {
-                    if (mode == "Add item" && itemName.isNotBlank()) {
-                        food.add(0, FoodItem("🍽️", itemName.trim(), itemLocation.ifBlank { "Fridge shelf" }, "Tracked", "3d", Lime, "Added manually"))
+                    if (mode == "Add item" && itemName.isNotBlank()) { //adds item only if it is valid
+                        food.add(0, FoodItem("🍽️", itemName.trim(), itemLocation.ifBlank { "Fridge shelf" }, "Tracked", "3d", Lime, "Added manually")) //adds item to top of the list
                         itemName = ""
                     }
                     dialog = null
@@ -160,7 +164,7 @@ fun HomeScreen(navController: NavController) {
                 Button(onClick = {
                     food.remove(item)
                     selectedFood = null
-                }) { Text("Mark eaten") }
+                }) { Text("Mark eaten") } //removes food item from list
             },
             dismissButton = { TextButton(onClick = { selectedFood = null }) { Text("Keep tracking") } },
             title = { Text("${item.emoji} ${item.name}") },
