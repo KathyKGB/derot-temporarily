@@ -1,4 +1,4 @@
-package com.freise
+package java.freise
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
