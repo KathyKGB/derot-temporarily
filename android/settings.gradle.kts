@@ -18,5 +18,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "FreshGuard"
+rootProject.name = "Freise"
 include(":app")
