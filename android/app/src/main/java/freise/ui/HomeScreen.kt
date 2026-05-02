@@ -1,4 +1,4 @@
-package java.friese.ui
+package java.freise.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
