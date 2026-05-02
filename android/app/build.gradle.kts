@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.rork.freshguard"
+    namespace = "com.freise"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.rork.freshguard"
+        applicationId = "com.freise"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
