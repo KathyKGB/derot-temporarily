@@ -1,4 +1,4 @@
-package com.freise.ui.navigation
+package com.freise.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
